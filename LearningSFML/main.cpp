@@ -13,7 +13,15 @@ int main() {
 
     Positions teste;
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML");
+    sf::Texture tex_dilma;
+    tex_dilma.loadFromFile("../LearningSFML/dilma.png");
+    sf::Sprite sprite_dilma(tex_dilma);
+
+    sf::Texture tex_coroa;
+    tex_coroa.loadFromFile("../LearningSFML/coroa.png");
+    sf::Sprite sprite_coroa(tex_coroa);
+
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Coloque a coroa na Rainha");
         float raio = 30;
         sf::CircleShape roda(raio);
         roda.setFillColor(sf::Color::Blue);
@@ -37,9 +45,14 @@ int main() {
             }
         window.clear();
 
-        roda.setPosition(sf::Vector2f(teste.rodaX, teste.rodaY));
+        //roda.setPosition(sf::Vector2f(teste.rodaX, teste.rodaY));
+        sprite_dilma.setPosition(300, 200);
+        sprite_coroa.setPosition(sf::Vector2f(teste.rodaX, teste.rodaY));
 
-        window.draw(roda);
+        window.draw(sprite_coroa);
+        window.draw(sprite_dilma);
+        //window.draw(roda);
+
         window.display();
     }
     return 0;
