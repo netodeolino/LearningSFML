@@ -21,10 +21,15 @@ int main() {
     tex_coroa.loadFromFile("../LearningSFML/coroa.png");
     sf::Sprite sprite_coroa(tex_coroa);
 
+    sf::Font font;
+    if (!font.loadFromFile("../LearningSFML/open-sans.ttf")){
+        return EXIT_FAILURE;
+    }
+    sf::Text text("Parabéns, Você ganhou!", font, 50);
+    text.setColor(sf::Color::Green);
+    text.setPosition(300, 100);
+
     sf::RenderWindow window(sf::VideoMode(800, 600), "Coloque a coroa na Rainha");
-        float raio = 30;
-        sf::CircleShape roda(raio);
-        roda.setFillColor(sf::Color::Blue);
 
         while (window.isOpen()) {
             sf::Event event;
@@ -43,15 +48,25 @@ int main() {
                 }
 
             }
+
+        //Collision
+        if ((sprite_coroa.getPosition().x <= 300) && (sprite_coroa.getPosition().x > 250)) {
+            if ((sprite_coroa.getPosition().y <= 140) && (sprite_coroa.getPosition().y > 130)) {
+                //cout << "PASSOU" << endl;
+                // Não está funfando
+                window.draw(text);
+            }
+        }
+
         window.clear();
 
-        //roda.setPosition(sf::Vector2f(teste.rodaX, teste.rodaY));
         sprite_dilma.setPosition(300, 200);
         sprite_coroa.setPosition(sf::Vector2f(teste.rodaX, teste.rodaY));
 
+
         window.draw(sprite_coroa);
         window.draw(sprite_dilma);
-        //window.draw(roda);
+        //window.draw(text);
 
         window.display();
     }
